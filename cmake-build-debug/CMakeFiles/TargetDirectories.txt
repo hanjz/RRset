@@ -1,0 +1,3 @@
+/Users/han/CLionProjects/RRset/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/han/CLionProjects/RRset/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/han/CLionProjects/RRset/cmake-build-debug/CMakeFiles/RRset.dir
