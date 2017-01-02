@@ -3,6 +3,8 @@ typedef pair<double,int> dipair;
 
 
 #include "iheap.h"
+#include <ctime> // Needed for the true randomization
+#include <cstdlib>
 
 class InfGraph: public Graph
 {
@@ -12,10 +14,15 @@ private:
 public:
     vector<vector<int>> hyperG;
     vector<vector<int>> hyperGT;
+    sfmt_t sfmtSeed;
 
     InfGraph(string folder, string graph_file): Graph(folder, graph_file)
     {
-        sfmt_init_gen_rand(&sfmtSeed , 95082);
+        srand( time(0)); // This will ensure a really randomized number by help of time.
+
+        int xRan=rand()%15+1; // Randomizing the number between 1-15.
+//        sfmt_init_gen_rand(&sfmtSeed , 95082);
+        sfmt_init_gen_rand(&sfmtSeed , xRan);
         init_hyper_graph();
         visit = vector<bool> (n);
         visit_mark = vector<int> (n);
@@ -93,7 +100,6 @@ public:
 
     //return the number of edges visited
     deque<int> q;
-    sfmt_t sfmtSeed;
     set<int> seedSet;
     void build_seedset(int k)
     {

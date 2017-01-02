@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/RRset.dir/main.cpp.o"
+  "CMakeFiles/RRset.dir/src/main.cpp.o"
   "RRset.pdb"
   "RRset"
 )
