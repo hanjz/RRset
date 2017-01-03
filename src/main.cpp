@@ -11,6 +11,7 @@ public:
     string model;
     double T;
     string outfile;
+    int rrNum;
 };
 
 #include "graph.h"
@@ -41,7 +42,7 @@ void run_with_parameter(InfGraph &g, const Argument & arg)
 
     //RRset::InfluenceMaximize(g, arg);
     string outfilename = "./output/" + arg.outfile;
-    RRset::getRRsets(g, arg, 50, outfilename);
+    RRset::getRRsets(g, arg.rrNum, arg, outfilename);
 
     //INFO(g.seedSet);
     //INFO(g.InfluenceHyperGraph());
@@ -69,6 +70,8 @@ void Run(int argn, char **argv)
             arg.k = atoi(argv[i + 1]);
         if (argv[i] == string("-model"))
             arg.model = argv[i + 1];
+        if (argv[i] == string("-R"))
+            arg.rrNum = atoi(argv[i + 1]);
         if (argv[i] == string("-outfile"))
             arg.outfile = argv[i + 1];
     }

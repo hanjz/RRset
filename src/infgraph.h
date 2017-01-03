@@ -14,6 +14,7 @@ private:
 public:
     vector<vector<int>> hyperG;
     vector<vector<int>> hyperGT;
+    vector<vector<int>> infmatrix;
     sfmt_t sfmtSeed;
 
     InfGraph(string folder, string graph_file): Graph(folder, graph_file)
@@ -28,11 +29,17 @@ public:
         visit_mark = vector<int> (n);
     }
 
-
+/*
+ * initialize hyperG and influence Matrix
+ */
     void init_hyper_graph(){
         hyperG.clear();
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++){
             hyperG.push_back(vector<int>());
+            infmatrix.push_back(vector<int>());
+            infmatrix[i].push_back(i);
+        }
+
         hyperGT.clear();
     }
     void build_hyper_graph_r(int64 R, const Argument & arg)
@@ -43,7 +50,9 @@ public:
         }
         //INFO("build_hyper_graph_r", R);
 
-
+/*
+ * initialize hyperGT
+ */
 
         int prevSize = hyperGT.size();
         while ((int)hyperGT.size() <= R)

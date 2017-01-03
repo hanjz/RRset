@@ -89,20 +89,44 @@ class RRset
     /*
     * Output RRsets
     */
-        static void getRRsets(InfGraph &g, const Argument &arg, int R, string filename){
+        static void getRRsets(InfGraph &g, int R, const Argument &arg, string filename){
 
             g.build_hyper_graph_r(R, arg);
             ofstream myfile;
             myfile.open (filename);
+
+            int nodeID;
+/*
+ * RRset ID start from 0
+ * Output inlfuence matrix
+ */
             for (int i = 0; i < (int) g.hyperGT.size();i++){
+                int rrsetID = i;
                 for(int j = 0; j < (int) g.hyperGT[i].size(); j++){
 //                    cout<<g.hyperGT[i][j]<<", ";
-                    myfile <<g.hyperGT[i][j]<<",";
+                    nodeID = g.hyperGT[i][j];
+                    myfile <<nodeID<<",";
+                    g.infmatrix[nodeID].push_back(rrsetID);
                 }
                 myfile << "\n";
 //                cout<<endl;
             }
             myfile.close();
+
+
+            ofstream myfile2;
+            myfile2.open("./output/infset.csv");
+            ofstream myfile3;
+            myfile3.open("./output/infvalue.csv");
+            for (int i = 0; i < (int) g.infmatrix.size();i++){
+                myfile3<<i<<","<<g.infmatrix[i].size()-1<< "\n";
+                for(int j = 0; j < (int) g.infmatrix[i].size(); j++){
+                    myfile2<<g.infmatrix[i][j]<<",";
+                }
+                myfile2 << "\n";
+            }
+            myfile2.close();
+            myfile3.close();
         }
 
 };
