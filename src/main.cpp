@@ -10,6 +10,7 @@ public:
     double epsilon;
     string model;
     double T;
+    string outfile;
 };
 
 #include "graph.h"
@@ -36,10 +37,11 @@ public:
 void run_with_parameter(InfGraph &g, const Argument & arg)
 {
     cout << "--------------------------------------------------------------------------------" << endl;
-    cout << arg.dataset << " k=" << arg.k << " epsilon=" << arg.epsilon <<   " " << arg.model << endl;
+    cout << arg.dataset << " k=" << arg.k << " epsilon=" << arg.epsilon <<   " " << arg.model <<" "<<arg.outfile <<endl;
 
     //RRset::InfluenceMaximize(g, arg);
-    RRset::getRRsets(g, arg, 3);
+    string outfilename = "./output/" + arg.outfile;
+    RRset::getRRsets(g, arg, 50, outfilename);
 
     //INFO(g.seedSet);
     //INFO(g.InfluenceHyperGraph());
@@ -67,6 +69,8 @@ void Run(int argn, char **argv)
             arg.k = atoi(argv[i + 1]);
         if (argv[i] == string("-model"))
             arg.model = argv[i + 1];
+        if (argv[i] == string("-outfile"))
+            arg.outfile = argv[i + 1];
     }
     ASSERT(arg.dataset != "");
     ASSERT(arg.model == "IC" || arg.model == "LT" || arg.model == "TR" || arg.model=="CONT");

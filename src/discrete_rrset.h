@@ -34,7 +34,7 @@ int BuildHypergraphNode(int uStart, int hyperiiid)
                 n_visit_edge++;
                 double randDouble = sfmt_genrand_real1(&sfmtSeed);
                 // probT is adjancent matirx of active probability
-                cout<<randDouble<<endl;
+//                cout<<randDouble<<endl;
                 if (randDouble > probT[i][j])
                     continue;
                 if (visit[v])

@@ -71,13 +71,6 @@ public:
 #endif
         }
 
-        for (int i = 0; i < (int) hyperGT.size();i++){
-            for(int j = 0; j < (int) hyperGT[i].size(); j++){
-                cout<<hyperGT[i][j]<<", ";
-            }
-            cout<<endl;
-        }
-
 
         int totAddedElement = 0;
         for (int i = prevSize; i < R; i++)
